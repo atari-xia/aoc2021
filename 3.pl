@@ -1,7 +1,6 @@
 use strict;
 use warnings "all";
 
-
 my @out;
 my @in;
 chomp(@in = <DATA>);
@@ -11,11 +10,11 @@ for (@in) {
 		$out[$x] += $line[$x];
 	}
 }
-my $x = "";
-my $y = "";
+my $x = '';
 for (@out) { 
 	$x .= ($_ > ((int @in) / 2)) ? "1" : "0"; 
-	$y .= ($_ > ((int @in) / 2)) ? "0" : "1"; 
 }
+$x = oct("0b" . $x);
+print $x * (~$x & 0b1111_1111_1111) . "\n";
 
-print oct("0b" . $x) * oct("0b" . $y) . "\n";
+__DATA__
